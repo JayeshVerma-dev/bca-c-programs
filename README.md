@@ -74,7 +74,7 @@ After that, most programs will run perfectly.
 ## 📈 Future Updates
 This repository will keep growing as I learn more topics in my BCA course.  
 Upcoming additions may include:
-- More C programs from Units 3 & 4  
+- More C programs
 - Cleaned and optimized versions of old programs  
 - Better organized folders (if required later)
 
