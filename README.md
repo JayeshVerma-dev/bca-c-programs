@@ -24,19 +24,7 @@ The main purpose of this repo is to build consistency, improve logic-building sk
 
 ## 🛠 How to Run the Programs
 
-### 🔹 **1. Running With Turbo C++ (Old Method)**
-If you are using Turbo C++:
-1. Save the file with `.c` extension  
-2. Open Turbo C++  
-3. Open → the file  
-4. **ALT + F9** — Compile  
-5. **CTRL + F9** — Run  
-
-> Note: Turbo C++ uses an old Borland compiler and is not recommended today.
-
----
-
-### 🔹 **2. Running With GCC (Recommended — Modern Compilers)**
+### 🔹 **Running With GCC (Recommended — Modern Compilers)**
 
 If you are using GCC (VSCode, Windows, Linux, macOS):
 
@@ -50,24 +38,6 @@ output.exe
 
 Linux/macOS:
 ./output
-
----
-
-## ⚠️ Compatibility Notes
-Turbo C++ uses some non-standard features like:
-
-- `#include <conio.h>`
-- `clrscr();`
-- `getch();`
-
-These **do not work** in modern GCC compilers.
-
-If a program fails in GCC:
-- Remove `conio.h`
-- Remove or replace `clrscr()`  
-- Remove or replace `getch()`
-
-After that, most programs will run perfectly.
 
 ---
 
