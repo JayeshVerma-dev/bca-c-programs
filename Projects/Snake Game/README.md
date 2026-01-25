@@ -76,25 +76,24 @@ a
 
 ---
 
-##⚠️ Limitations
-- No graphical interface (text-based only)
-- ENTER key required for each move
-- Designed specifically for Windows Command Prompt
-- Uses basic screen clearing instead of real-time rendering
+## ⚠️ Limitations
+- This is a **console-based** application and does not include any graphical user interface.
+- Player input is **ENTER-based**, as the program uses standard C input functions.
+- The game uses manual screen clearing (`system("cls")`), which may cause minor flickering.
+- Designed specifically for **Windows Command Prompt**; behavior may differ on other platforms.
+- No sound effects or advanced animations are included.
 
 ---
 
-##📌 Project Status
-✅ Completed
-🔒 No further changes planned for this version
-
+## 📌 Project Status
+- **Status:** Completed ✅
+- This version of the project is considered **final**.
+- No further features or enhancements are planned for this source code.
+  
 ---
 
-##🧩 Note
-This project was intentionally built without external tutorials or game libraries, relying only on college-level C programming knowledge and minimal system-level experimentation.
+## 📜 License
+This project is released for **educational and learning purposes** only.
 
----
-
-##📜 License
-
-This project is created for educational purposes.
+- Free to view, study, and reference.
+- Not intended for commercial use.
