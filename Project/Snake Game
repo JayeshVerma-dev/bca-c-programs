@@ -1,0 +1,270 @@
+/*
+Name of Program : SNAKE GAME
+Programmer name : Jayesh Verma
+Date : 21-January-2026
+Description : This program is to run a console based 'Snake Game' entirely in Command Prompt in Windows.
+*/
+                      
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+short int coorA[2], coorS[2], r_rec[189], c_rec[189], body=0;
+char arr1[11][23],input=' ';
+void Frame_Generator(void);
+void FPS(void);
+int Random(char R_or_C, int except);
+void Respawn(void);
+
+
+int main()
+{
+char Rstr;
+srand(time(0));
+
+system("cls");
+printf("...WELCOME TO 'SNAKE GAME' PROJECT BY JAYESH VERMA... \n\n");
+printf("--------------------INSTRUCTIONS-------------------- \n\n ~~~~~~~~~~~~CONTROLS~~~~~~~~~~~~ \n Use W A S D keys to move the snake \n W = Up \n A = Left \n S = Down \n D = Right \n\n ~~~~~~~~~~INPUT METHOD~~~~~~~~~~\n 1. After typing movement keys, press ENTER \n 2. If you hold a key (example: ddddd or aaaaa),\n the game will read all characters one by one \n and move the snake that many times after ENTER \n\n ~~~~~~~~~~SYMBOLS USED~~~~~~~~~~ \n X = Snake Head \n O = Snake Body \n @ = Apple (Food) \n + = Game Boundary \n\n ~~~~~~~~~~~GAME RULES~~~~~~~~~~~ \n 1. Snake can move only inside the + boundary \n 2. Eating an apple (@) increases snake length \n 3. If snake touches its own body (O), game over \n\n ~~~~~~~~~~~~~~EXIT~~~~~~~~~~~~~~ \n Press . (dot) to quit the game \n\n\n Press any key and ENTER to start playing : ");
+scanf(" %c",&Rstr);
+Rstr='Y';
+
+
+Frame_Generator();
+Respawn();
+arr1[coorA[0]][coorA[1]] = '@';
+
+//To get random coordiante to spawn Snake and Apple
+
+coorS[0] = Random('R',coorA[0]);
+coorS[1] = Random('C',coorA[1]);
+arr1[coorS[0]][coorS[1]] = 'X';
+
+
+
+while(input!='.' && input!='R')
+{FPS();}
+
+if(input=='R')
+{
+system("cls");
+printf("\n\
++ + + + + + + + + + + +\n\
++                     +\n\
++                     +\n\
++                     +\n\
++                     +\n\
++      GAME OVER!     +\n\
++                     +\n\
++                     +\n\
++                     +\n\
++                     +\n\
++ + + + + + + + + + + +\n");
+
+printf("\nOops! You Hit Yourself!\nFinal Score : %d\n\nDo you want to play again?\n(Press Y if 'Yes', any other key if 'No')\n",body);
+scanf(" %c",&Rstr);
+if (Rstr=='Y'||Rstr=='y')
+{
+system("cls");
+system("a");
+}
+}
+
+if(input=='.'||Rstr!='y'||Rstr!='Y')
+{
+system("cls");
+}
+
+return 0;
+}
+
+
+
+void Frame_Generator(void)
+{
+short int a,b;
+for(a=0;a<11;a++)
+{
+for(b=0;b<23;b++)
+{
+
+//For horizontal '+' lines at top and bottom
+
+if(a==0||a==10)   //For spaces at odd positions in top/bottom horrizontal line
+{
+if(b%2!=0)
+{
+arr1[a][b]=' ';
+continue; 
+}
+
+else
+
+{ arr1[a][b]='+'; }
+
+}
+
+else   //For Vertical '+' lines
+{
+if(b==0||b==22)
+
+{ arr1[a][b]='+'; }
+
+else
+{ arr1[a][b]=' '; }
+
+}
+
+}
+}
+}
+
+
+void FPS(void)
+{
+system("cls");
+
+short int a,b,c=0;
+for(a=0;a<11;a++)
+{
+printf("\n");
+for(b=0;b<23;b++)
+{ printf("%c",arr1[a][b]); }
+}
+
+
+//To print current score
+
+printf("\nScore : %d\n",body);
+
+
+//To remove unnecessary snake head
+
+arr1[coorS[0]][coorS[1]]=' ';
+
+
+//scanning for inputs
+
+scanf(" %c",&input);
+switch(input){
+
+case 'a':
+case 'A':
+if(coorS[1]!=1) 
+{coorS[1]-=1;}
+else
+{c=1;}
+break;
+
+case 'w':
+case 'W':
+if(coorS[0]!=1) 
+{coorS[0]-=1;}
+else
+{c=1;}
+break;
+
+case 's':
+case 'S':
+if(coorS[0]!=9) 
+{coorS[0]+=1;}
+else
+{c=1;}
+break;
+
+case 'd':
+case 'D':
+if(coorS[1]!=21)
+{coorS[1]+=1;}
+else
+{c=1;}
+break;
+
+case '.':
+{c=1;}
+
+default:
+break;
+}
+	
+
+//To respawn the Apple at new coordinate if snake eats it
+
+if(arr1[coorS[0]][coorS[1]]==arr1[coorA[0]][coorA[1]])
+{
+Respawn();
+body++;
+}
+
+
+//Adding body length if snake eats apple and moving the body
+
+if(body && c!=1)
+{
+for(a=0;a<=body;a++)
+{
+arr1[r_rec[a]][c_rec[a]]='O';
+arr1[r_rec[a+1]][c_rec[a+1]]=' ';
+}
+}
+
+
+//Recording the snake's current Coordinates
+
+r_rec[0]=coorS[0];
+c_rec[0]=coorS[1];
+
+
+//Shifting Movement records to free 0th index memory 
+
+if(c!=1)
+{
+for(a=188;a>0;a--)
+{
+r_rec[a]=r_rec[a-1];
+c_rec[a]=c_rec[a-1];
+}
+}
+
+
+//Game Over check   
+
+if(arr1[coorS[0]][coorS[1]]=='O')
+{ input='R'; }
+
+else
+{ arr1[coorS[0]][coorS[1]]='X'; }
+
+
+arr1[coorA[0]][coorA[1]] = '@';
+
+}
+
+
+
+
+
+int Random(char R_or_C, int except)
+{
+short int rand_num=100,max,min;
+do{
+if (R_or_C=='R')
+{
+max=9;
+min=1;
+}
+else if (R_or_C=='C')
+{
+max=21;
+min=1;
+}
+rand_num = rand() % (max - min + 1) + min;}while(except==rand_num);
+return rand_num;
+}
+
+
+void Respawn(void)
+{
+coorA[0] = Random('R',coorS[0]);
+coorA[1] = Random('C',coorS[1]);
+}
