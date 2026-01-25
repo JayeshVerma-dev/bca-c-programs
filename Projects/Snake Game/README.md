@@ -71,8 +71,7 @@ This limitation exists due to standard input handling in C without non-standard 
 
 ## 🛠 Compilation & Execution
 - Compile the program using:
-gcc SNAKE.C
-a
+gcc SNAKE.C → a
 
 
 ---
